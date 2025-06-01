@@ -3,7 +3,7 @@ import type { GiphyResponse } from "../api/model";
 import { fetchRandomGifs } from "../api/gifs";
 
 export const useRandomGifs = () => {
-  const { data, isLoading, error } = useQuery<GiphyResponse>({
+  const { data, isLoading, error, refetch } = useQuery<GiphyResponse>({
     queryKey: ["randomGifs"],
     queryFn: ({ signal }) => fetchRandomGifs(signal),
   });
@@ -12,5 +12,6 @@ export const useRandomGifs = () => {
     data,
     isLoading,
     error,
+    refetch,
   };
 };

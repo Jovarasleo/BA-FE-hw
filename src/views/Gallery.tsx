@@ -4,7 +4,7 @@ import { useLockedGifsContext } from "../hooks/useLockedGifsContext";
 
 export function Gallery() {
   const { lockGif, unlockGif, isLocked } = useLockedGifsContext();
-  const { data } = useRandomGifs();
+  const { data, refetch } = useRandomGifs();
 
   return (
     <>
@@ -21,6 +21,7 @@ export function Gallery() {
           />
         ))}
       </main>
+      <button onClick={() => refetch()}>refetch gifs</button>
     </>
   );
 }
