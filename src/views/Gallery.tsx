@@ -1,22 +1,32 @@
 import { Card } from "../components/card/Card";
-import { useRandomGifs } from "../hooks/useGifs";
+import { useCombinedGifs } from "../hooks/useCombinedGifs";
+import { useRandomGifs } from "../hooks/useRandomGifs";
 import { useLockedGifsContext } from "../hooks/useLockedGifsContext";
 
 export function Gallery() {
-  const { lockGif, unlockGif, isLocked } = useLockedGifsContext();
-  const { data, refetch } = useRandomGifs();
+  const {
+    data: lockedGifs,
+    unlockGif,
+    lockGif,
+    isLocked,
+  } = useLockedGifsContext();
+  const { randomGifs, refetch } = useRandomGifs();
+  const { combinedGifs } = useCombinedGifs({
+    lockedGifs,
+    randomGifs: randomGifs?.data ?? [],
+  });
 
   return (
     <>
       <h1>Giphy</h1>
       <main>
-        {data?.data.map((gif) => (
+        {combinedGifs.map((gif, index) => (
           <Card
             key={gif.id}
-            url={gif.images.fixed_width_downsampled.url}
+            url={gif.images.original.url}
             importDate={gif.import_datetime}
             locked={isLocked(gif.id)}
-            lockGif={() => lockGif(gif)}
+            lockGif={() => lockGif({ ...gif, position: index })}
             unlockGif={() => unlockGif(gif.id)}
           />
         ))}

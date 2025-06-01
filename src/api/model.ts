@@ -18,6 +18,10 @@ export interface GiphyData {
   images: GiphyDataImages;
 }
 
+export interface LocalGiphyData extends GiphyData {
+  position: number;
+}
+
 export interface GiphyResponse {
   data: GiphyData[];
   meta: {

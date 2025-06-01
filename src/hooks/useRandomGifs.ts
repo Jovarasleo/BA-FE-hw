@@ -9,7 +9,7 @@ export const useRandomGifs = () => {
   });
 
   return {
-    data,
+    randomGifs: data,
     isLoading,
     error,
     refetch,
