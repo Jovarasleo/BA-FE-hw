@@ -1,5 +1,5 @@
 #root {
-  max-width: 1280px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -9,4 +9,9 @@
 
 main {
   display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(clamp(280px, 33%, 320px), 1fr)
+  );
 }
