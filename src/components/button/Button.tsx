@@ -8,10 +8,10 @@ interface Props {
   onClick: () => void;
 }
 
-export function Button({ children, className, onClick }: Props) {
+export const Button = ({ children, className, onClick }: Props) => {
   return (
     <button className={clsx("button", className)} onClick={onClick}>
       {children}
     </button>
   );
-}
+};

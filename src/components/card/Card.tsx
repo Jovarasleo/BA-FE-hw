@@ -11,7 +11,7 @@ interface Props {
   unlockGif: () => void;
 }
 
-export function Card({ gif, locked, lockGif, unlockGif }: Props) {
+export const Card = ({ gif, locked, lockGif, unlockGif }: Props) => {
   const importDateWithoutTime = gif.import_datetime.split(" ")[0];
 
   return (
@@ -40,4 +40,4 @@ export function Card({ gif, locked, lockGif, unlockGif }: Props) {
       </Button>
     </div>
   );
-}
+};

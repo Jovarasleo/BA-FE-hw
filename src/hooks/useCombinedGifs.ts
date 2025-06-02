@@ -34,7 +34,7 @@ export const useCombinedGifs = ({ lockedGifs, randomGifs }: Params) => {
 
         return nextUniqueGif;
       }),
-    [randomGifs]
+    [randomGifs, randomGifIndex] //Re-calculate combinedGifs only when new data is fetched
   );
 
   return {

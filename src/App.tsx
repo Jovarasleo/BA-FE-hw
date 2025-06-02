@@ -1,11 +1,11 @@
 import { LockedGifsProvider } from "./context/LockedGifsContext";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Gallery } from "./views/Gallery";
-import "./styles/App.scss";
 import { Layout } from "./components/layout/Layout";
 import { RandomGifsProvider } from "./context/RandomGifsContext";
+import "./styles/App.scss";
 
-function App() {
+const App = () => {
   const queryClient = new QueryClient();
 
   return (
@@ -19,6 +19,6 @@ function App() {
       </LockedGifsProvider>
     </QueryClientProvider>
   );
-}
+};
 
 export default App;

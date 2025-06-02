@@ -11,5 +11,5 @@ export const useKeyboardControls = (handleRefetch: () => void) => {
 
     window.addEventListener("keydown", handleSpacePress);
     return () => window.removeEventListener("keydown", handleSpacePress);
-  }, []);
+  }, [handleRefetch]);
 };

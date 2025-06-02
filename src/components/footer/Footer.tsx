@@ -11,7 +11,9 @@ export const Footer = () => {
     randomGifs.length > 0 && (
       <Button className="refreshBtn" onClick={handleRefetch}>
         <BiRefresh />
-        Hit here to refresh gifs or press space
+        <span className="refreshBtn__text">
+          Hit here to refresh gifs or press space
+        </span>
       </Button>
     )
   );

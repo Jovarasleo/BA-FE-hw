@@ -1,16 +1,5 @@
-import { createContext } from "react";
-import type { GiphyData, GiphyResponse } from "../api/model";
 import { useRandomGifs } from "../hooks/useRandomGifs";
-import type { QueryObserverResult } from "@tanstack/react-query";
-
-interface Params {
-  randomGifs: GiphyData[];
-  error: Error | null;
-  isLoading: boolean;
-  handleRefetch: () => Promise<QueryObserverResult<GiphyResponse, Error>>;
-}
-
-export const RandomGifsContext = createContext<Params | null>(null);
+import { RandomGifsContext } from "../hooks/useRandomGifsContext";
 
 export const RandomGifsProvider = ({
   children,

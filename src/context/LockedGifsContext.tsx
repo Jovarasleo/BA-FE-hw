@@ -1,15 +1,5 @@
-import { createContext } from "react";
-import type { LocalGiphyData } from "../api/model";
 import { useLockedGifs } from "../hooks/useLockedGifs";
-
-interface Params {
-  data: LocalGiphyData[];
-  lockGif: (id: LocalGiphyData) => void;
-  unlockGif: (id: string) => void;
-  isLocked: (id: string) => boolean;
-}
-
-export const LockedGifsContext = createContext<Params | null>(null);
+import { LockedGifsContext } from "../hooks/useLockedGifsContext";
 
 export const LockedGifsProvider = ({
   children,
