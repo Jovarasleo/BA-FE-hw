@@ -21,10 +21,9 @@ export function Card({ gif, locked, lockGif, unlockGif }: Props) {
           alt={gif.title}
           srcSet={`
             ${gif.images.original.url} 260w,
-            ${gif.images.fixed_width_small.url} 220w,
             ${gif.images.fixed_width_downsampled.url} 200w
           `}
-          src={`${gif.images.fixed_width_downsampled.url}`}
+          src={gif.images.fixed_width_small.url}
           className="card__gif"
           loading="lazy"
         />

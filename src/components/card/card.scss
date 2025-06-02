@@ -49,6 +49,10 @@
     border-radius: 4px;
     background-color: hsla(0, 0%, 0%, 0.48);
 
+    &:hover {
+      background-color: hsla(0, 0%, 0%, 0.78);
+    }
+
     svg {
       fill: white;
       width: 18px;
