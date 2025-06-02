@@ -1,14 +1,15 @@
+@use "../../styles/variables";
+
 .button {
   display: flex;
   align-items: center;
-  color: rgb(255, 255, 255);
+  color: variables.$base-color;
   gap: 0.9rem;
   margin: 0 auto;
 
-  padding: 0;
   border: none;
   border-radius: 6px;
   padding: 1.15rem;
-  background-color: #2d3748;
+  background-color: variables.$secondary-background-color;
   cursor: pointer;
 }

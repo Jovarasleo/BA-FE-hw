@@ -1,7 +1,7 @@
 import { LockedGifsProvider } from "./context/LockedGifsContext";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Gallery } from "./views/Gallery";
-import "./App.scss";
+import "./styles/App.scss";
 
 function App() {
   const queryClient = new QueryClient();
