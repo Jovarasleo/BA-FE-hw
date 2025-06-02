@@ -14,16 +14,16 @@ function getRandomizedOffset(min = 0, max = 480): number {
   return Math.floor(normalized * (max - min + 1)) + min;
 }
 
-const urlParams = new URLSearchParams({
-  api_key: VITE_API_KEY,
-  limit: GIFS_LIMIT.toString(),
-  offset: getRandomizedOffset().toString(),
-  bundle: BUNDLE,
-});
-
 export const fetchRandomGifs = async (
   signal?: AbortSignal
 ): Promise<GiphyResponse> => {
+  const urlParams = new URLSearchParams({
+    api_key: VITE_API_KEY,
+    limit: GIFS_LIMIT.toString(),
+    offset: getRandomizedOffset().toString(),
+    bundle: BUNDLE,
+  });
+
   const url = `${ENDPOINT}${urlParams}`;
   const res = await fetch(url, { signal });
 
