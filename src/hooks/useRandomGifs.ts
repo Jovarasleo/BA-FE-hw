@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import type { GiphyResponse } from "../api/model";
 import { fetchRandomGifs } from "../api/gifs";
+import { useMemo } from "react";
 
 export const useRandomGifs = () => {
   const { data, isLoading, error, refetch } = useQuery<GiphyResponse>({
@@ -10,8 +11,20 @@ export const useRandomGifs = () => {
 
   const handleRefetch = () => refetch();
 
+  const sortedGifs = useMemo(() => {
+    if (!data?.data) {
+      return [];
+    }
+
+    return [...data.data].sort(
+      (a, b) =>
+        new Date(a.import_datetime).getTime() -
+        new Date(b.import_datetime).getTime()
+    );
+  }, [data]);
+
   return {
-    randomGifs: data,
+    randomGifs: sortedGifs,
     isLoading,
     error,
     handleRefetch,

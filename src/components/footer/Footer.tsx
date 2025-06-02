@@ -8,7 +8,7 @@ export const Footer = () => {
 
   return (
     !error &&
-    randomGifs && (
+    randomGifs.length && (
       <Button className="refreshBtn" onClick={handleRefetch}>
         <BiRefresh />
         Hit here to refresh gifs or press space
