@@ -20,7 +20,12 @@ export const LockedGifsProvider = ({
 
   return (
     <LockedGifsContext.Provider
-      value={{ data: lockedGifs, lockGif, unlockGif, isLocked }}
+      value={{
+        data: lockedGifs,
+        lockGif,
+        unlockGif,
+        isLocked,
+      }}
     >
       {children}
     </LockedGifsContext.Provider>

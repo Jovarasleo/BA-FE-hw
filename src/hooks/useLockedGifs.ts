@@ -28,5 +28,10 @@ export const useLockedGifs = () => {
 
   const isLocked = (id: string) => lockedGifs.some((gif) => gif.id === id);
 
-  return { lockedGifs, lockGif, unlockGif, isLocked };
+  return {
+    lockedGifs,
+    lockGif,
+    unlockGif,
+    isLocked,
+  };
 };

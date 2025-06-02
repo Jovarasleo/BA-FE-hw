@@ -1,6 +1,6 @@
+import { BiRefresh } from "react-icons/bi";
 import { useRandomGifsContext } from "../../hooks/useRandomGifsContext";
 import { Button } from "../button/Button";
-import { BiRefresh } from "react-icons/bi";
 import "./footer.scss";
 
 export const Footer = () => {
