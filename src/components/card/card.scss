@@ -13,9 +13,11 @@
     }
 
     .card__caption {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      @media (min-width: 460px) {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     }
 
     .card__gif {

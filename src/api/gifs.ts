@@ -20,6 +20,10 @@ export const fetchRandomGifs = async (
 
   const res = await fetch(url, { signal });
 
+  if (res.status === 429) {
+    throw new Error("Requests limit reached");
+  }
+
   if (!res.ok) {
     throw new Error("Failed to fetch trending GIFs");
   }

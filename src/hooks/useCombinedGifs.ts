@@ -6,13 +6,26 @@ interface Params {
 }
 
 export const useCombinedGifs = ({ lockedGifs, randomGifs }: Params) => {
-  const combinedGifs = randomGifs.map((gif, index) => {
-    const lockedGifAtCurrentIndex = lockedGifs.find(
-      (lockedGif) => lockedGif.position === index
-    );
+  let randomGifIndex = 0;
+  const lockedGifIds = new Set(lockedGifs.map((gif) => gif.id));
 
-    //TODO: might encounter same gif in locked and random arrays at different position causing key issues
-    return lockedGifAtCurrentIndex ?? gif;
+  const combinedGifs = randomGifs.map((_, index) => {
+    const lockedGifAtIndex = lockedGifs.find((gif) => gif.position === index);
+    if (lockedGifAtIndex) {
+      return lockedGifAtIndex;
+    }
+
+    while (
+      randomGifIndex < randomGifs.length &&
+      lockedGifIds.has(randomGifs[randomGifIndex].id)
+    ) {
+      randomGifIndex++;
+    }
+
+    const nextUniqueGif = randomGifs[randomGifIndex];
+    randomGifIndex++;
+
+    return nextUniqueGif;
   });
 
   return {

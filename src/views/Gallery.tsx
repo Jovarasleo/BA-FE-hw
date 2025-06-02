@@ -5,6 +5,7 @@ import { useLockedGifsContext } from "../hooks/useLockedGifsContext";
 import { Card } from "../components/card/Card";
 import { BiRefresh } from "react-icons/bi";
 import { Button } from "../components/button/Button";
+import { useKeyboardControls } from "../hooks/useKeyboardControls";
 
 export function Gallery() {
   const {
@@ -13,23 +14,20 @@ export function Gallery() {
     lockGif,
     isLocked,
   } = useLockedGifsContext();
-  const { randomGifs, handleRefetch } = useRandomGifs();
+  const { randomGifs, error, isLoading, handleRefetch } = useRandomGifs();
   const { combinedGifs } = useCombinedGifs({
     lockedGifs,
     randomGifs: randomGifs?.data ?? [],
   });
+  useKeyboardControls(handleRefetch);
 
-  useEffect(() => {
-    const handleSpacePress = (e: KeyboardEvent) => {
-      if (e.code === "Space") {
-        e.preventDefault();
-        handleRefetch();
-      }
-    };
+  if (isLoading) {
+    <span>Loading...</span>;
+  }
 
-    window.addEventListener("keydown", handleSpacePress);
-    return () => window.removeEventListener("keydown", handleSpacePress);
-  }, []);
+  if (error) {
+    <span>{error.message}</span>;
+  }
 
   return (
     <>
