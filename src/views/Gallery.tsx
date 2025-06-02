@@ -1,8 +1,10 @@
-import { Card } from "../components/card/Card";
+import { useEffect } from "react";
 import { useCombinedGifs } from "../hooks/useCombinedGifs";
 import { useRandomGifs } from "../hooks/useRandomGifs";
 import { useLockedGifsContext } from "../hooks/useLockedGifsContext";
-import { useEffect } from "react";
+import { Card } from "../components/card/Card";
+import { BiRefresh } from "react-icons/bi";
+import { Button } from "../components/button/Button";
 
 export function Gallery() {
   const {
@@ -11,7 +13,7 @@ export function Gallery() {
     lockGif,
     isLocked,
   } = useLockedGifsContext();
-  const { randomGifs, refetch } = useRandomGifs();
+  const { randomGifs, handleRefetch } = useRandomGifs();
   const { combinedGifs } = useCombinedGifs({
     lockedGifs,
     randomGifs: randomGifs?.data ?? [],
@@ -21,7 +23,7 @@ export function Gallery() {
     const handleSpacePress = (e: KeyboardEvent) => {
       if (e.code === "Space") {
         e.preventDefault();
-        refetch();
+        handleRefetch();
       }
     };
 
@@ -33,17 +35,22 @@ export function Gallery() {
     <>
       <h1>Giphy</h1>
       <main>
-        {combinedGifs.map((gif, index) => (
-          <Card
-            key={gif.id}
-            gif={gif}
-            locked={isLocked(gif.id)}
-            lockGif={() => lockGif({ ...gif, position: index })}
-            unlockGif={() => unlockGif(gif.id)}
-          />
-        ))}
+        <section className="gallery">
+          {combinedGifs.map((gif, index) => (
+            <Card
+              key={gif.id}
+              gif={gif}
+              locked={isLocked(gif.id)}
+              lockGif={() => lockGif({ ...gif, position: index })}
+              unlockGif={() => unlockGif(gif.id)}
+            />
+          ))}
+        </section>
       </main>
-      <button onClick={() => refetch()}>refetch gifs</button>
+      <Button className="refreshBtn" onClick={handleRefetch}>
+        <BiRefresh />
+        Hit here to refresh gifs or press space
+      </Button>
     </>
   );
 }

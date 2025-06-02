@@ -8,10 +8,12 @@ export const useRandomGifs = () => {
     queryFn: ({ signal }) => fetchRandomGifs(signal),
   });
 
+  const handleRefetch = () => refetch();
+
   return {
     randomGifs: data,
     isLoading,
     error,
-    refetch,
+    handleRefetch,
   };
 };

@@ -1,5 +1,7 @@
 import type { GiphyData } from "../../api/model";
-import { LockButton } from "../lockButton/LockButton";
+import { Button } from "../button/Button";
+import { MdLockOpen } from "react-icons/md";
+import { MdLockOutline } from "react-icons/md";
 import "./card.scss";
 
 interface Props {
@@ -31,7 +33,12 @@ export function Card({ gif, locked, lockGif, unlockGif }: Props) {
           {gif.title}
         </figcaption>
       </figure>
-      <LockButton locked={locked} onClick={locked ? unlockGif : lockGif} />
+      <Button
+        className="card__lockButton"
+        onClick={locked ? unlockGif : lockGif}
+      >
+        {locked ? <MdLockOutline /> : <MdLockOpen />}
+      </Button>
     </div>
   );
 }
