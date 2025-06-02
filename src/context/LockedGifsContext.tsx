@@ -1,11 +1,8 @@
+import type { ReactNode } from "react";
 import { useLockedGifs } from "../hooks/useLockedGifs";
 import { LockedGifsContext } from "../hooks/useLockedGifsContext";
 
-export const LockedGifsProvider = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => {
+export const LockedGifsProvider = ({ children }: { children: ReactNode }) => {
   const { lockedGifs, lockGif, unlockGif, isLocked } = useLockedGifs();
 
   return (

@@ -17,7 +17,7 @@ export const Gallery = () => {
 
   const { combinedGifs } = useCombinedGifs({
     lockedGifs,
-    randomGifs: randomGifs,
+    randomGifs,
   });
 
   useKeyboardControls(handleRefetch);
