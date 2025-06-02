@@ -8,7 +8,7 @@ export const LockedGifsProvider = ({ children }: { children: ReactNode }) => {
   return (
     <LockedGifsContext.Provider
       value={{
-        data: lockedGifs,
+        lockedGifs,
         lockGif,
         unlockGif,
         isLocked,

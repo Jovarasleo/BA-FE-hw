@@ -5,13 +5,7 @@ import { useLockedGifsContext } from "../hooks/useLockedGifsContext";
 import { useRandomGifsContext } from "../hooks/useRandomGifsContext";
 
 export const Gallery = () => {
-  const {
-    data: lockedGifs,
-    unlockGif,
-    lockGif,
-    isLocked,
-  } = useLockedGifsContext();
-
+  const { lockedGifs, unlockGif, lockGif, isLocked } = useLockedGifsContext();
   const { randomGifs, error, isLoading, handleRefetch } =
     useRandomGifsContext();
 

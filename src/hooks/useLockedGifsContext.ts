@@ -2,7 +2,7 @@ import { createContext, useContext } from "react";
 import type { LocalGiphyData } from "../api/model";
 
 interface Params {
-  data: LocalGiphyData[];
+  lockedGifs: LocalGiphyData[];
   lockGif: (id: LocalGiphyData) => void;
   unlockGif: (id: string) => void;
   isLocked: (id: string) => boolean;
