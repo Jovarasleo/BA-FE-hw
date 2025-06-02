@@ -2,7 +2,7 @@ import { Card } from "../components/card/Card";
 import { useCombinedGifs } from "../hooks/useCombinedGifs";
 import { useKeyboardControls } from "../hooks/useKeyboardControls";
 import { useLockedGifsContext } from "../hooks/useLockedGifsContext";
-import { useRandomGifs } from "../hooks/useRandomGifs";
+import { useRandomGifsContext } from "../hooks/useRandomGifsContext";
 
 export const Gallery = () => {
   const {
@@ -11,11 +11,15 @@ export const Gallery = () => {
     lockGif,
     isLocked,
   } = useLockedGifsContext();
-  const { randomGifs, error, isLoading, handleRefetch } = useRandomGifs();
+
+  const { randomGifs, error, isLoading, handleRefetch } =
+    useRandomGifsContext();
+
   const { combinedGifs } = useCombinedGifs({
     lockedGifs,
     randomGifs: randomGifs?.data ?? [],
   });
+
   useKeyboardControls(handleRefetch);
 
   if (isLoading) {

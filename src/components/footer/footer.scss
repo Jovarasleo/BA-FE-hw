@@ -1,0 +1,12 @@
+.refreshBtn {
+  margin: 0 1rem;
+
+  svg {
+    min-width: 20px;
+    height: 20px;
+  }
+
+  @media (max-width: 600px) {
+    padding: 0.5rem 0.5rem;
+  }
+}

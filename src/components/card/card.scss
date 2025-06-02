@@ -2,39 +2,39 @@
   position: relative;
   text-align: left;
 
-  .card__figure {
+  &__figure {
     aspect-ratio: 4/3;
     text-align: left;
+  }
 
-    .card__date {
-      font-weight: 400;
-      font-size: 0.75rem;
-      margin: 4px 0;
-    }
+  &__date {
+    font-weight: 400;
+    font-size: 0.75rem;
+    margin: 4px 0;
+  }
 
-    .card__caption {
-      @media (min-width: 460px) {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-    }
-
-    .card__gif {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      position: relative;
-
-      border-radius: 6px;
-      border-width: 2px;
-      border-color: white;
-      border-style: solid;
+  &__caption {
+    @media (min-width: 460px) {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 
-  .card__lockButton {
+  &__gif {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: relative;
+
+    border-radius: 6px;
+    border-width: 2px;
+    border-color: white;
+    border-style: solid;
+  }
+
+  &__lockButton {
     position: absolute;
     display: flex;
     justify-content: center;
