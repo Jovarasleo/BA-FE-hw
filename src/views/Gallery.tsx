@@ -2,6 +2,7 @@ import { Card } from "../components/card/Card";
 import { useCombinedGifs } from "../hooks/useCombinedGifs";
 import { useRandomGifs } from "../hooks/useRandomGifs";
 import { useLockedGifsContext } from "../hooks/useLockedGifsContext";
+import { useEffect } from "react";
 
 export function Gallery() {
   const {
@@ -15,6 +16,18 @@ export function Gallery() {
     lockedGifs,
     randomGifs: randomGifs?.data ?? [],
   });
+
+  useEffect(() => {
+    const handleSpacePress = (e: KeyboardEvent) => {
+      if (e.code === "Space") {
+        e.preventDefault();
+        refetch();
+      }
+    };
+
+    window.addEventListener("keydown", handleSpacePress);
+    return () => window.removeEventListener("keydown", handleSpacePress);
+  }, []);
 
   return (
     <>
