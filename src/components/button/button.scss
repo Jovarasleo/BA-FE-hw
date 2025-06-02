@@ -13,8 +13,10 @@
   background-color: variables.$secondary-background-color;
   cursor: pointer;
 
-  &:hover {
-    background-color: rgba(variables.$secondary-background-color, 0.75);
+  @media (hover: hover) {
+    &:hover {
+      background-color: rgba(variables.$secondary-background-color, 0.75);
+    }
   }
 
   &:active {
