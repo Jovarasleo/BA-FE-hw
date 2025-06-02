@@ -23,8 +23,7 @@ export function Gallery() {
         {combinedGifs.map((gif, index) => (
           <Card
             key={gif.id}
-            url={gif.images.original.url}
-            importDate={gif.import_datetime}
+            gif={gif}
             locked={isLocked(gif.id)}
             lockGif={() => lockGif({ ...gif, position: index })}
             unlockGif={() => unlockGif(gif.id)}

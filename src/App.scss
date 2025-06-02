@@ -1,17 +1,12 @@
 #root {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 2rem;
   text-align: center;
-  display: flex;
-  flex-direction: column;
 }
 
 main {
+  max-width: 1024px;
   display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(clamp(280px, 33%, 320px), 1fr)
-  );
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  padding: 1.5rem 0.75rem;
+  margin: 0 auto;
 }

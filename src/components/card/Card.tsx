@@ -1,20 +1,37 @@
-import { LockButton } from "../lockButton/lockButton";
+import type { GiphyData } from "../../api/model";
+import { LockButton } from "../lockButton/LockButton";
 import "./card.scss";
 
 interface Props {
-  url: string;
-  importDate: string;
+  gif: GiphyData;
   locked: boolean;
   lockGif: () => void;
   unlockGif: () => void;
 }
 
-export function Card({ url, locked, lockGif, unlockGif }: Props) {
+export function Card({ gif, locked, lockGif, unlockGif }: Props) {
+  const importDateWithoutTime = gif.import_datetime.split(" ")[0];
+
   return (
     <div className="card">
-      <img src={url} className="gif" />
+      <figure className="card__figure">
+        <img
+          alt={gif.title}
+          srcSet={`
+            ${gif.images.original.url} 260w,
+            ${gif.images.fixed_width_small.url} 220w,
+            ${gif.images.fixed_width_downsampled.url} 200w
+          `}
+          src={`${gif.images.fixed_width_downsampled.url}`}
+          className="card__gif"
+          loading="lazy"
+        />
+        <p className="card__date">{importDateWithoutTime}</p>
+        <figcaption title={gif.title} className="card__caption">
+          {gif.title}
+        </figcaption>
+      </figure>
       <LockButton locked={locked} onClick={locked ? unlockGif : lockGif} />
-      <p></p>
     </div>
   );
 }
