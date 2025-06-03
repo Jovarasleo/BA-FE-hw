@@ -1,10 +1,10 @@
 import { BiRefresh } from "react-icons/bi";
-import { useRandomGifsContext } from "../../hooks/useRandomGifsContext";
+import { useGifsContext } from "../../hooks/useGifsContext";
 import { Button } from "../button/Button";
 import "./footer.scss";
 
 export const Footer = () => {
-  const { randomGifs, error, handleRefetch } = useRandomGifsContext();
+  const { randomGifs, error, handleRefetch } = useGifsContext();
 
   return (
     !error &&
