@@ -1,7 +1,7 @@
+import { useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import type { GiphyResponse } from "../api/model";
 import { fetchRandomGifs } from "../api/gifs";
-import { useMemo } from "react";
 
 export const useRandomGifs = () => {
   const { data, isLoading, error, refetch } = useQuery<GiphyResponse>({

@@ -1,6 +1,6 @@
+import type { ReactNode } from "react";
 import clsx from "clsx";
 import "./button.scss";
-import type { ReactNode } from "react";
 
 interface Props {
   children: ReactNode;

@@ -1,6 +1,6 @@
-import { Card } from "../components/card/Card";
 import { useGifsContext } from "../hooks/useGifsContext";
 import { useKeyboardControls } from "../hooks/useKeyboardControls";
+import { Card } from "../components/card/Card";
 
 export const Gallery = () => {
   const {
