@@ -7,35 +7,31 @@ interface Params {
 }
 
 export const useCombinedGifs = ({ lockedGifs, randomGifs }: Params) => {
-  let randomGifIndex = 0;
-  const lockedGifIds = new Set(lockedGifs.map((gif) => gif.id));
+  const combinedGifs = useMemo(() => {
+    const lockedGifIds = new Set(lockedGifs.map((gif) => gif.id));
+    let randomGifIndex = 0;
 
-  const combinedGifs = useMemo(
-    () =>
-      randomGifs.map((_, index) => {
-        const lockedGifAtIndex = lockedGifs.find(
-          (gif) => gif.position === index
-        );
+    return randomGifs.map((_, index) => {
+      const lockedGifAtIndex = lockedGifs.find((gif) => gif.position === index);
 
-        if (lockedGifAtIndex) {
-          return lockedGifAtIndex;
-        }
+      if (lockedGifAtIndex) {
+        return lockedGifAtIndex;
+      }
 
-        //Skip randomGif if it's already in lockedGifs array
-        while (
-          randomGifIndex < randomGifs.length &&
-          lockedGifIds.has(randomGifs[randomGifIndex].id)
-        ) {
-          randomGifIndex++;
-        }
-
-        const nextUniqueGif = randomGifs[randomGifIndex];
+      //Skip randomGif if it's already in lockedGifs array
+      while (
+        randomGifIndex < randomGifs.length &&
+        lockedGifIds.has(randomGifs[randomGifIndex].id)
+      ) {
         randomGifIndex++;
+      }
 
-        return nextUniqueGif;
-      }),
-    [randomGifs, randomGifIndex] //Re-calculate combinedGifs only when new data is fetched
-  );
+      const nextUniqueGif = randomGifs[randomGifIndex];
+      randomGifIndex++;
+
+      return nextUniqueGif;
+    });
+  }, [randomGifs, lockedGifs]);
 
   return {
     combinedGifs,

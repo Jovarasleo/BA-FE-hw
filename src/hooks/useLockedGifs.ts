@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import type { LocalGiphyData } from "../api/model";
 
 const STORAGE_KEY = "lockedGifs";
@@ -10,6 +10,10 @@ const getStorageItem = (key: string, fallbackValue = []) => {
 };
 
 export const useLockedGifs = () => {
+  const initialLockedGifs = useRef<LocalGiphyData[]>(
+    getStorageItem(STORAGE_KEY)
+  );
+
   const [lockedGifs, setLockedGifs] = useState<LocalGiphyData[]>(
     getStorageItem(STORAGE_KEY)
   );
@@ -26,10 +30,16 @@ export const useLockedGifs = () => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
   };
 
+  const resetInitialGifs = () => {
+    initialLockedGifs.current = getStorageItem(STORAGE_KEY);
+  };
+
   const isLocked = (id: string) => lockedGifs.some((gif) => gif.id === id);
 
   return {
     lockedGifs,
+    initialLockedGifs: initialLockedGifs.current,
+    resetInitialGifs,
     lockGif,
     unlockGif,
     isLocked,

@@ -1,13 +1,12 @@
 import { createContext, useContext } from "react";
-import type { GiphyData, GiphyResponse, LocalGiphyData } from "../api/model";
-import type { QueryObserverResult } from "@tanstack/react-query";
+import type { GiphyData, LocalGiphyData } from "../api/model";
 
 interface Params {
   error: Error | null;
   randomGifs: GiphyData[];
   combinedGifs: GiphyData[];
   isLoading: boolean;
-  handleRefetch: () => Promise<QueryObserverResult<GiphyResponse, Error>>;
+  refreshGifs: () => void;
   lockGif: (id: LocalGiphyData) => void;
   unlockGif: (id: string) => void;
   isLocked: (id: string) => boolean;

@@ -7,13 +7,13 @@ export const Gallery = () => {
     combinedGifs,
     isLoading,
     error,
-    handleRefetch,
+    refreshGifs,
     isLocked,
     lockGif,
     unlockGif,
   } = useGifsContext();
 
-  useKeyboardControls(handleRefetch);
+  useKeyboardControls(refreshGifs);
 
   if (isLoading) {
     return <span>Loading...</span>;

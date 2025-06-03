@@ -2,7 +2,7 @@ import type { GiphyResponse } from "./model";
 
 const { VITE_API_KEY } = import.meta.env;
 
-const GIFS_LIMIT = 12;
+export const GIFS_LIMIT = 12;
 const BUNDLE = "messaging_non_clips";
 const ENDPOINT = "https://api.giphy.com/v1/gifs/trending?";
 

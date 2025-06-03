@@ -3,14 +3,31 @@ import { useCombinedGifs } from "../hooks/useCombinedGifs";
 import { GifContext } from "../hooks/useGifsContext";
 import { useLockedGifs } from "../hooks/useLockedGifs";
 import { useRandomGifs } from "../hooks/useRandomGifs";
+import { GIFS_LIMIT } from "../api/gifs";
 
 export const GifsProvider = ({ children }: { children: ReactNode }) => {
-  const { randomGifs, error, isLoading, handleRefetch } = useRandomGifs();
-  const { lockedGifs, lockGif, unlockGif, isLocked } = useLockedGifs();
-  const { combinedGifs } = useCombinedGifs({
+  const {
     lockedGifs,
+    initialLockedGifs,
+    lockGif,
+    unlockGif,
+    isLocked,
+    resetInitialGifs,
+  } = useLockedGifs();
+  const { randomGifs, error, isLoading, handleRefetch } = useRandomGifs();
+  const { combinedGifs } = useCombinedGifs({
+    lockedGifs: initialLockedGifs,
     randomGifs,
   });
+
+  const refreshGifs = () => {
+    if (lockedGifs.length === GIFS_LIMIT) {
+      return;
+    }
+
+    resetInitialGifs();
+    handleRefetch();
+  };
 
   return (
     <GifContext.Provider
@@ -19,7 +36,7 @@ export const GifsProvider = ({ children }: { children: ReactNode }) => {
         isLoading,
         randomGifs,
         combinedGifs,
-        handleRefetch,
+        refreshGifs,
         lockGif,
         unlockGif,
         isLocked,
