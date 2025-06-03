@@ -16,7 +16,7 @@ export const GifsProvider = ({ children }: { children: ReactNode }) => {
   } = useLockedGifs();
   const { randomGifs, error, isLoading, handleRefetch } = useRandomGifs();
   const { combinedGifs } = useCombinedGifs({
-    lockedGifs: initialLockedGifs,
+    initialLockedGifs,
     randomGifs,
   });
 

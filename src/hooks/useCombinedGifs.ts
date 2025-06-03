@@ -2,17 +2,19 @@ import { useMemo } from "react";
 import type { GiphyData, LocalGiphyData } from "../api/model";
 
 interface Params {
-  lockedGifs: LocalGiphyData[];
+  initialLockedGifs: LocalGiphyData[];
   randomGifs: GiphyData[];
 }
 
-export const useCombinedGifs = ({ lockedGifs, randomGifs }: Params) => {
+export const useCombinedGifs = ({ initialLockedGifs, randomGifs }: Params) => {
   const combinedGifs = useMemo(() => {
-    const lockedGifIds = new Set(lockedGifs.map((gif) => gif.id));
+    const lockedGifIds = new Set(initialLockedGifs.map((gif) => gif.id));
     let randomGifIndex = 0;
 
     return randomGifs.map((_, index) => {
-      const lockedGifAtIndex = lockedGifs.find((gif) => gif.position === index);
+      const lockedGifAtIndex = initialLockedGifs.find(
+        (gif) => gif.position === index
+      );
 
       if (lockedGifAtIndex) {
         return lockedGifAtIndex;
@@ -31,7 +33,7 @@ export const useCombinedGifs = ({ lockedGifs, randomGifs }: Params) => {
 
       return nextUniqueGif;
     });
-  }, [randomGifs, lockedGifs]);
+  }, [randomGifs, initialLockedGifs]);
 
   return {
     combinedGifs,
